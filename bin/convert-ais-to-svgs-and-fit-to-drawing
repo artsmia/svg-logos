@@ -1,0 +1,8 @@
+#!/usr/bin/env fish
+
+for i in (ls **.ai)
+  set svg (echo $i | sed "s/ai\$/svg/")
+  /usr/local/Cellar/inkscape/0.48.2-1/Inkscape.app/Contents/Resources/bin/inkscape -z -f $i -l $svg
+  /usr/local/Cellar/inkscape/0.48.2-1/Inkscape.app/Contents/Resources/bin/inkscape -f $svg --verb FitCanvasToSelectionOrDrawing --verb FileSave --verb FileClose
+  svgo $svg
+end
